@@ -229,6 +229,7 @@ MonoBehaviour:
   condition: 0
   color: 0
   weight: 0
+  sprite: {fileID: 0}
 --- !u!114 &3054568877667098434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   isSelected: 0
+  image: {fileID: 542665566915869201}
+  text: {fileID: 3913253418108519238}
 --- !u!1 &4611646646053725343
 GameObject:
   m_ObjectHideFlags: 0

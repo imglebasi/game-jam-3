@@ -13,7 +13,13 @@ public class InventoryItemManager : MonoBehaviour
 
     public Image image;
     public TextMeshProUGUI text;
+    private ScrapData data;
    
+
+    private void Awake()
+    {
+        data = gameObject.GetComponent<ScrapData>();
+    }
 
     private void Start()
     {
@@ -39,6 +45,8 @@ public class InventoryItemManager : MonoBehaviour
 
     public void Select()
     {
+        data.Randomize();
+        Setup();
         selector.gameObject.GetComponent<Image>().enabled = true;
         selector.position = this.GetComponent<RectTransform>().position;
         manager.SelectItem(index);
@@ -52,4 +60,9 @@ public class InventoryItemManager : MonoBehaviour
         isSelected = false;
     }
 
+    public void Setup()
+    {
+        image.sprite = data.sprite;
+        text.text = data.Name();
+    }
 }

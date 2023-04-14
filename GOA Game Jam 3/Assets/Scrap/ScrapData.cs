@@ -9,7 +9,7 @@ public class ScrapData : MonoBehaviour
     //I used public enums so that other scripts, such as the scrap merchant script,
     //can also use the same enums to read the scrap data
 
-    public enum ScrapType { Gear, CircuitBoard, Battery };
+    public enum ScrapType { Gear, Circuit, Battery };
     public enum ScrapCondition { Rusty, Cracked, Sandy}
     public enum ScrapColor { Teal, Brown, Grey}
 
@@ -39,17 +39,22 @@ public class ScrapData : MonoBehaviour
         condition = (ScrapCondition)Random.Range(0, 3);
         color = (ScrapColor)Random.Range(0, 3);
         weight = (int)Random.Range(1, 20);
+        sprite = Resources.Load<Sprite>(type.ToString()) as Sprite;
         
     }
 
+    public string Name()
+    {
+        string typeName = type.ToString();
+        return typeName;
+    }
     public string Description()
     {
         //gives a description of the item
         string typeName = type.ToString();
-        if (typeName.Equals("CircuitBoard")) typeName = "circuit board"; //no, I couldn't figure out a better way to fix this, mostly because I didn't care that much
         string conditionName = condition.ToString();
         string colorName = color.ToString();
-
+        
         return "A " + conditionName.ToLower() + ", " + colorName.ToLower() + " " + typeName.ToLower() + " weighing " + weight + " grams.";
         
     }

@@ -29,7 +29,9 @@ public class InventoryManager : MonoBehaviour
             GameObject obj = Instantiate(itemPrefab);
             obj.transform.SetParent(transform);
             inventoryItems[i] = obj;
-            obj.GetComponent<InventoryItemManager>().index = i;            
+            obj.GetComponent<ScrapData>().Randomize();
+            obj.GetComponent<InventoryItemManager>().index = i;
+            obj.GetComponent<InventoryItemManager>().Setup();
         }
     }
 
