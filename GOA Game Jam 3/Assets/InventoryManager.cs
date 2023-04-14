@@ -82,7 +82,7 @@ public class InventoryManager : MonoBehaviour
                     data.Copy(inventoryItems[i + 1].GetComponent<ScrapData>());
                     Destroy(inventoryItems[i + 1].GetComponent<ScrapData>());
                     inventoryItems[i].AddComponent<InventoryItemManager>().Setup();
-                   // inventoryItems[i+1].AddComponent<InventoryItemManager>().Setup();
+                    inventoryItems[i+1].AddComponent<InventoryItemManager>().Setup();
                     loop = true;
                     break;
                 }
