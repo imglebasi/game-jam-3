@@ -13,6 +13,7 @@ public class ScrapData : MonoBehaviour
     public enum ScrapCondition { Rusty, Cracked, Sandy}
     public enum ScrapColor { Teal, Brown, Grey}
 
+
  
 
 
@@ -22,6 +23,7 @@ public class ScrapData : MonoBehaviour
     public ScrapCondition condition;
     public ScrapColor color;
     public int weight;
+    public Sprite sprite;
 
     //you can uncomment the update function if you want to test out the script a bit
     //private void Update()
@@ -29,6 +31,7 @@ public class ScrapData : MonoBehaviour
     //    Debug.Log(Description());
     //    if (Input.GetKeyDown("a")) Randomize();
     //}
+
     public void Randomize()
     {
         //can be called when generating new scrap to give the scrap random parameters
@@ -36,6 +39,7 @@ public class ScrapData : MonoBehaviour
         condition = (ScrapCondition)Random.Range(0, 3);
         color = (ScrapColor)Random.Range(0, 3);
         weight = (int)Random.Range(1, 20);
+        
     }
 
     public string Description()
