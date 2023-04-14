@@ -14,6 +14,12 @@ public class InventoryItemManager : MonoBehaviour
     public Image image;
     public TextMeshProUGUI text;
     private ScrapData data;
+
+    public GameObject visScrap;
+
+    private Transform player;
+
+    public bool selectable;
    
 
     private void Awake()
@@ -23,6 +29,7 @@ public class InventoryItemManager : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
         selector = GameObject.FindWithTag("UISelector").GetComponent<RectTransform>();
         manager = transform.parent.GetComponent<InventoryManager>();
     }
@@ -33,19 +40,21 @@ public class InventoryItemManager : MonoBehaviour
     }
     public void OnClick()
     {
-        if (!isSelected)
+        if (selectable)
         {
-            Select();
-        }
-        else
-        {
-            Deselect();
+            if (!isSelected)
+            {
+                Select();
+            }
+            else
+            {
+                Deselect();
+            }
         }
     }
 
     public void Select()
     {
-        data.Randomize();
         Setup();
         selector.gameObject.GetComponent<Image>().enabled = true;
         selector.position = this.GetComponent<RectTransform>().position;
@@ -62,7 +71,34 @@ public class InventoryItemManager : MonoBehaviour
 
     public void Setup()
     {
-        image.sprite = data.sprite;
-        text.text = data.Name();
+        data = GetComponent<ScrapData>();
+        
+        if (data != null)
+        {
+            image.enabled = true;
+            text.enabled = true;
+            selectable = true;
+            image.sprite = data.sprite;
+            text.text = data.Name();
+        }
+        else
+        {
+            image.enabled = false;
+            text.enabled = false;
+            selectable = false;
+        }
+    }
+
+    public void Drop()
+    {
+        GameObject obj = Instantiate(visScrap, player.position, new Quaternion(0f,0f,0f,0f));
+        ScrapData odata = obj.GetComponent<ScrapData>();
+        odata.Copy(data);
+        Deselect();
+        Destroy(data);
+        Setup();
+        image.enabled = false;
+        text.enabled = false;
+        selectable = false;
     }
 }

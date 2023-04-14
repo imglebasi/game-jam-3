@@ -58,4 +58,13 @@ public class ScrapData : MonoBehaviour
         return "A " + conditionName.ToLower() + ", " + colorName.ToLower() + " " + typeName.ToLower() + " weighing " + weight + " grams.";
         
     }
+
+    public void Copy(ScrapData data)
+    {
+        type = data.type;
+        weight = data.weight;
+        condition = data.condition;
+        color = data.color;
+        sprite = data.sprite;
+    }
 }

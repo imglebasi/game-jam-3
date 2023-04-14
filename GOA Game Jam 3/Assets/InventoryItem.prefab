@@ -246,6 +246,8 @@ MonoBehaviour:
   isSelected: 0
   image: {fileID: 542665566915869201}
   text: {fileID: 3913253418108519238}
+  visScrap: {fileID: 6885305451826700288, guid: ba46a9d3f41136b4ebf6807a9b124d23, type: 3}
+  selectable: 0
 --- !u!1 &4611646646053725343
 GameObject:
   m_ObjectHideFlags: 0
